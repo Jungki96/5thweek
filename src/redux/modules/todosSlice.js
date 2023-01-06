@@ -8,10 +8,6 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> orgin/master
 export const __getTodos = createAsyncThunk(
   "todos/getTodos",
   async (payload, thunkAPI) => {
