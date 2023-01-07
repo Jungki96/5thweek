@@ -1,31 +1,38 @@
 // src/App.jsx
 
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { __getTodos } from "./redux/modules/todosSlice";
+import React from "react";
+import { useState } from "react";
+import useInput from "./hooks/useInput";
 
 const App = () => {
-  const dispatch = useDispatch();
+  // input의 갯수가 늘어날때마다 state와 handler가 같이 증가한다.
+  // const [title, setTitle] = useState("");
+  // const onChangeTitleHandler = (e) => {
+  //   setTitle(e.target.value);
+  // };
+  const [title, onChangeTitleHandler] = useInput();
 
-  const { isLoading, error, todos } = useSelector((state) => state.todos);
-
-  useEffect(() => {
-    dispatch(__getTodos());
-  }, [dispatch]);
-
-  if (isLoading) {
-    return <div>로딩 중....</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+  // input의 갯수가 늘어날때마다 state와 handler가 같이 증가한다.
+  // const [body, setBody] = useState("");
+  // const onChangeBodyHandler = (e) => {
+  //   setBody(e.target.value);
+  // };
+  const [body, onChangeBodyHandler] = useInput();
 
   return (
     <div>
-      {todos.map((todo) => (
-        <div key={todo.id}>{todo.title}</div>
-      ))}
+      <input
+        type="text"
+        name="title"
+        value={title}
+        onChange={onChangeTitleHandler}
+      />
+      <input
+        type="text"
+        name="title"
+        value={body}
+        onChange={onChangeBodyHandler}
+      />
     </div>
   );
 };
